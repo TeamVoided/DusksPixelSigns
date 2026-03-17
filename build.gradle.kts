@@ -27,15 +27,10 @@ repositories {
     mavenCentral()
 }
 
-//println("Task: " + gradle.startParameter.taskNames.joinToString(","))
-
 modSettings {
-    entrypoint("main", "org.teamvoided.template.Template::init")
-    entrypoint("client", "org.teamvoided.template.client.TemplateClient::init")
-    entrypoint("fabric-datagen", "org.teamvoided.template.data.gen.TemplateData")
-
+    entrypoint("client", "org.teamvoided.dusks_pixel_signs.DusksPixelSigns::init")
+//    entrypoint("fabric-datagen", "org.teamvoided.dusks_pixel_signs.data.gen.MData")
     mixinFile("${modId()}.client.mixins.json")
-    mixinFile("${modId()}.mixins.json")
 //    accessWidener("${modId()}.accesswidener")
 }
 
