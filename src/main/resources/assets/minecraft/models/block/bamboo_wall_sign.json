@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/parent/wall_sign",
+  "textures": {
+    "planks": "dusks_pixel_signs:block/bamboo_sign_planks"
+  }
+}

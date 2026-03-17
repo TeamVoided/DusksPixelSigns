@@ -4,7 +4,7 @@ modVersion = "1.0.0"
 group = "org.teamvoided"
 githubRepo = "Teamvoided/DusksPixelSigns"
 discordServerInviteId = "KZ5Q364hEg"
-authors = [ "TheEnderCore" ]
+authors = [ "DuskAutumnStorm", "TheEnderCore" ]
 majorMinecraftVersion = ">=1.21"
 minecraftVersion = "1.21.1"
 fabricLoaderVersion = "0.18.4"

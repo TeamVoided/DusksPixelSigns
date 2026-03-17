@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/parent/sign_2",
+  "textures": {
+    "planks": "minecraft:block/jungle_planks",
+    "wood": "minecraft:block/jungle_log"
+  }
+}

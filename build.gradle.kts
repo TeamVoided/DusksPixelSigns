@@ -28,7 +28,7 @@ repositories {
 }
 
 modSettings {
-    entrypoint("client", "org.teamvoided.dusks_pixel_signs.DusksPixelSigns::init")
+    entrypoint("client", "org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns::init")
 //    entrypoint("fabric-datagen", "org.teamvoided.dusks_pixel_signs.data.gen.MData")
     mixinFile("${modId()}.client.mixins.json")
 //    accessWidener("${modId()}.accesswidener")
