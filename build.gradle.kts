@@ -35,7 +35,7 @@ modSettings {
 }
 
 dependencies {
-    modImplementation(fileTree("libs"))
+    //modImplementation(fileTree("libs"))
     // Dependencies
     modImplementation(libs.fzzy.config)
     // QoL
