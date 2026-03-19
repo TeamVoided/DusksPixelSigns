@@ -10,6 +10,8 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.SignBlock;
+import net.minecraft.world.level.block.StandingSignBlock;
+import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.entity.SignText;
 import net.minecraft.world.level.block.state.BlockState;
@@ -60,8 +62,16 @@ public abstract class SignBlockEntityRendererMixin implements BlockEntityRendere
         var world = Minecraft.getInstance().level;
         assert world != null;
         var block = world.getBlockState(pos).getBlock();
-        var outTrans = (block instanceof SignBlock) ? new Vec3(0.0, 0.234375, 0.0626) : getTextOffset();
 
-        original.call(instance, matrices, front, outTrans);
+        if (block instanceof StandingSignBlock || block instanceof WallSignBlock) {
+            var translationAlt = new Vec3(0.0, 0.234375, 0.0626);
+            original.call(instance,matrices, front, translationAlt);
+        } else {
+            original.call(instance,matrices, front, this.getTextOffset());
+        }
+
+       // var outTrans = (block instanceof SignBlock) ? new Vec3(0.0, 0.234375, 0.0626) : getTextOffset();
+
+       // original.call(instance, matrices, front, outTrans);
     }
 }
