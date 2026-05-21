@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}_vdatagen",
+  "version": "${mod_version}",
+  "name": "${mod_name} Datagen",
+  "entrypoints": {
+    "fabric-datagen": [
+      {
+        "adapter": "kotlin",
+        "value": "org.teamvoided.dusks_pixel_signs.datagen.DusksPixelSignsData"
+      }
+    ]
+  },
+  "mixins": [
+    "dusks_pixel_signs.datagen.mixins.json"
+  ]
+}

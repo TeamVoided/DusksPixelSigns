@@ -1,4 +1,4 @@
-package org.teamvoided.dusks_pixel_signs.client.data.gen
+package org.teamvoided.dusks_pixel_signs.datagen.assets
 
 import net.minecraft.data.models.BlockModelGenerators
 import net.minecraft.data.models.blockstates.MultiVariantGenerator
@@ -13,11 +13,10 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
-import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.id
-import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.mc
+import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns
 import java.util.Optional
 
-object ModelProvider {
+object Models {
 
     val WOOD: TextureSlot = TextureSlot.create("wood")
     val PLANKS: TextureSlot = TextureSlot.create("planks")
@@ -45,8 +44,8 @@ object ModelProvider {
         this.pixelAccurateSign(
             Blocks.BAMBOO_SIGN,
             Blocks.BAMBOO_WALL_SIGN,
-            id("block/bamboo_sign_planks"),
-            id("block/bamboo_sign_log")
+            DusksPixelSigns.id("block/bamboo_sign_planks"),
+            DusksPixelSigns.id("block/bamboo_sign_log")
         )
         this.pixelAccurateSign(
             Blocks.CRIMSON_SIGN,
@@ -77,13 +76,13 @@ object ModelProvider {
             .put(PLANKS, planks)
             .put(WOOD, log)
         val default: ResourceLocation =
-            block(mc("block/parent/sign_0"), PLANKS, WOOD).create(sign.model("_0"), texture, this.modelOutput)
+            block(DusksPixelSigns.mc("block/parent/sign_0"), PLANKS, WOOD).create(sign.model("_0"), texture, this.modelOutput)
         val rotate225: ResourceLocation =
-            block(mc("block/parent/sign_1"), PLANKS, WOOD).create(sign.model("_1"), texture, this.modelOutput)
+            block(DusksPixelSigns.mc("block/parent/sign_1"), PLANKS, WOOD).create(sign.model("_1"), texture, this.modelOutput)
         val rotate45: ResourceLocation =
-            block(mc("block/parent/sign_2"), PLANKS, WOOD).create(sign.model("_2"), texture, this.modelOutput)
+            block(DusksPixelSigns.mc("block/parent/sign_2"), PLANKS, WOOD).create(sign.model("_2"), texture, this.modelOutput)
         val rotate675: ResourceLocation =
-            block(mc("block/parent/sign_3"), PLANKS, WOOD).create(sign.model("_3"), texture, this.modelOutput)
+            block(DusksPixelSigns.mc("block/parent/sign_3"), PLANKS, WOOD).create(sign.model("_3"), texture, this.modelOutput)
 
         this.blockStateOutput.accept(
             MultiVariantGenerator.multiVariant(sign)
@@ -94,7 +93,7 @@ object ModelProvider {
     fun BlockModelGenerators.pixelAccurateWallSign(wallSign: Block, planks: ResourceLocation) {
         val texture: TextureMapping = TextureMapping()
             .put(PLANKS, planks)
-        block(mc("block/parent/wall_sign"), PLANKS).create(wallSign, texture, this.modelOutput)
+        block(DusksPixelSigns.mc("block/parent/wall_sign"), PLANKS).create(wallSign, texture, this.modelOutput)
         this.createNonTemplateHorizontalBlock(wallSign)
     }
 
@@ -128,10 +127,10 @@ object ModelProvider {
         ModelTemplate(Optional.of(parent), Optional.empty(), *requiredTextures)
 
     fun block(parent: String, vararg requiredTextures: TextureSlot): ModelTemplate =
-        ModelTemplate(Optional.of(id("block/$parent")), Optional.empty(), *requiredTextures)
+        ModelTemplate(Optional.of(DusksPixelSigns.id("block/$parent")), Optional.empty(), *requiredTextures)
 
     fun block(parent: String, variant: String, vararg requiredTextures: TextureSlot): ModelTemplate =
-        ModelTemplate(Optional.of(id("block/$parent")), Optional.of(variant), *requiredTextures)
+        ModelTemplate(Optional.of(DusksPixelSigns.id("block/$parent")), Optional.of(variant), *requiredTextures)
 
     private val <T : Any?> T.myb get() = Optional.ofNullable(this)
     fun Block.model(): ResourceLocation = ModelLocationUtils.getModelLocation(this)

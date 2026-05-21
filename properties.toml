@@ -1,0 +1,11 @@
+mod_name = "Dusk's Pixel Signs"
+mod_id = "dusks_pixel_signs"
+mod_group = "org.teamvoided"
+mod_version = "1.0.0"
+mod_description = "Actualy Pixel consistent signs"
+github_repo = "Teamvoided/DusksPixelSigns"
+discord_invite = "https://discord.gg/KZ5Q364hEg"
+authors = [ "DuskAutumnStorm", "TheEnderCore" ]
+license = "MIT"
+min_minecraft = "1.21.1" # Inclusive
+max_minecraft = "1.21.2" # Exclusive

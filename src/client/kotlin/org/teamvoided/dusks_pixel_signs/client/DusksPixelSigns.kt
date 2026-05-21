@@ -1,6 +1,7 @@
 package org.teamvoided.dusks_pixel_signs.client
 
 import me.fzzyhmstrs.fzzy_config.api.ConfigApi
+import me.fzzyhmstrs.fzzy_config.api.RegisterType
 import net.minecraft.resources.ResourceLocation
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -14,7 +15,7 @@ object DusksPixelSigns {
     val log: Logger = LoggerFactory.getLogger(MODID)
 
     @JvmField
-    var config = ConfigApi.registerAndLoadConfig(::DusksPixelSignsConfig)
+    var config = ConfigApi.registerAndLoadConfig(::DusksPixelSignsConfig, RegisterType.CLIENT)
 
     fun init() {
         log.info("Hello from Client")
