@@ -1,4 +1,4 @@
-package org.teamvoided.dusks_pixel_signs.client
+package org.teamvoided.dusks_pixel_signs.client.misc
 
 import net.minecraft.core.Direction
 import net.minecraft.world.level.block.Block

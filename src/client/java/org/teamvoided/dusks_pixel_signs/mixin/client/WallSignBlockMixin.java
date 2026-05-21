@@ -11,7 +11,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.teamvoided.dusks_pixel_signs.client.SignShapes;
+import org.teamvoided.dusks_pixel_signs.client.misc.SignShapes;
 
 @Mixin(WallSignBlock.class)
 public class WallSignBlockMixin extends Block {
