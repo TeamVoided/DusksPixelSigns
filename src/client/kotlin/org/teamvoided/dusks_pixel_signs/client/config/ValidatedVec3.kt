@@ -3,15 +3,18 @@ package org.teamvoided.dusks_pixel_signs.client.config
 import me.fzzyhmstrs.fzzy_config.entry.EntryValidator
 import me.fzzyhmstrs.fzzy_config.screen.widget.LayoutClickableWidget
 import me.fzzyhmstrs.fzzy_config.screen.widget.LayoutWidget
+import me.fzzyhmstrs.fzzy_config.screen.widget.ValidationBackedNumberFieldWidget
 import me.fzzyhmstrs.fzzy_config.util.FcText.translate
 import me.fzzyhmstrs.fzzy_config.util.ValidationResult
 import me.fzzyhmstrs.fzzy_config.validation.ValidatedField
 import me.fzzyhmstrs.fzzy_config.validation.misc.ChoiceValidator
-import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedNumber.ConfirmButtonTextFieldWidget
 import net.minecraft.client.gui.components.AbstractWidget
 import net.minecraft.client.gui.narration.NarratedElementType
 import net.minecraft.world.phys.Vec3
 import net.peanuuutz.tomlkt.*
+import java.util.function.Consumer
+import java.util.function.Function
+import java.util.function.Supplier
 
 class ValidatedVec3(storedValue: Vec3, defaultValue: Vec3 = storedValue, val minValue: Double, val maxValue: Double) :
     ValidatedField<Vec3>(storedValue, defaultValue) {
@@ -67,7 +70,7 @@ class ValidatedVec3(storedValue: Vec3, defaultValue: Vec3 = storedValue, val min
             ?: ValidationResult.success(input)
     }
 
-    private fun Vec3.validatedPart(field: Double, fieldName: String): ValidationResult<Vec3>? {
+    fun Vec3.validatedPart(field: Double, fieldName: String): ValidationResult<Vec3>? {
         if (field < minValue)
             return ValidationResult.error(
                 this,
@@ -84,21 +87,29 @@ class ValidatedVec3(storedValue: Vec3, defaultValue: Vec3 = storedValue, val min
         return null
     }
 
+    fun validatedNum(num: Double, fieldName: String): ValidationResult<Double> {
+        if (num < minValue)
+            return ValidationResult.error(
+                num,
+                ValidationResult.Errors.OUT_OF_BOUNDS,
+                "Validated vec3 field ($fieldName) [${this}] below the valid range [${minValue}] to [${maxValue}]"
+            )
+        else if (num > maxValue)
+            return ValidationResult.error(
+                num,
+                ValidationResult.Errors.OUT_OF_BOUNDS,
+                "Validated vec3 field ($fieldName) [${this}] above the valid range [${minValue}] to [${maxValue}]"
+            )
+
+        return ValidationResult.success(num)
+    }
+
+    @Suppress("UnstableApiUsage")
     override fun widgetEntry(choicePredicate: ChoiceValidator<Vec3>): AbstractWidget {
         val layout = LayoutWidget.builder().paddingBoth(0).spacingBoth(0).clampWidth(110).build()
-        for (index in 0..2) {
-           /* layout.add(
-                "choice$index",
-                ConfirmButtonTextFieldWidget(
-                    this,
-                    choicePredicate,
-                    validator(),
-                    { setAndUpdate(it) }
-                ),
-                LayoutWidget.Position.BELOW,
-                LayoutWidget.Position.ALIGN_CENTER
-            )*/
-        }
+        layout.numberWidget("x", { storedValue.x }) { setAndUpdate(Vec3(it, storedValue.y, storedValue.z)) }
+        layout.numberWidget("y", { storedValue.y }) { setAndUpdate(Vec3(storedValue.x, it, storedValue.z)) }
+        layout.numberWidget("z", { storedValue.z }) { setAndUpdate(Vec3(storedValue.x, storedValue.y, it)) }
         return LayoutClickableWidget(0, 0, 110, 20 * 3, layout).withNarrationAppender { builder ->
             builder.add(
                 NarratedElementType.TITLE,
@@ -106,4 +117,37 @@ class ValidatedVec3(storedValue: Vec3, defaultValue: Vec3 = storedValue, val min
             )
         }
     }
+
+    fun LayoutWidget.numberWidget(name: String, value: () -> Double, valueApplier: (Double) -> Unit) {
+        add(
+            name,
+            NumberButtonTextFieldWidget(
+                value,
+                ChoiceValidator.any(),
+                { validatedNum(it, name) },
+                valueApplier
+            ),
+            LayoutWidget.Position.BELOW,
+            LayoutWidget.Position.ALIGN_CENTER
+        )
+    }
+
+    class NumberButtonTextFieldWidget<T : Number>(
+        wrappedValue: Supplier<T>,
+        choiceValidator: ChoiceValidator<T>,
+        validationProvider: Function<Double, ValidationResult<T>>,
+        valueApplier: Consumer<T>,
+        width: Int = 110,
+        renderStatus: Boolean = true,
+        increment: Double = 0.0,
+    ) : ValidationBackedNumberFieldWidget<T>(
+        width,
+        20,
+        wrappedValue,
+        choiceValidator,
+        validationProvider,
+        valueApplier,
+        renderStatus,
+        increment
+    )
 }

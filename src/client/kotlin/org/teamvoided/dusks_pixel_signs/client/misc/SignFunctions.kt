@@ -18,6 +18,7 @@ object SignFunctions {
     fun isBig(state: BlockState) = isBig(state.block)
 
     @JvmStatic
+    @Suppress("DEPRECATION")
     fun isBig(block: Block) = config.namespaces.contains(block.builtInRegistryHolder().key().location().namespace)
 
     @JvmStatic
@@ -30,7 +31,7 @@ object SignFunctions {
 
         return when (block) {
             is StandingSignBlock -> config.standingSign.get()
-            is WallSignBlock -> config.wallSign.asVec()
+            is WallSignBlock -> config.wallSign.get()
             else -> textOffset
         }
     }
