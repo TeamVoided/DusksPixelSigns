@@ -3,7 +3,9 @@ package org.teamvoided.dusks_pixel_signs.datagen
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
 import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns
+import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.MOD_COMPAT_PACK
 import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.log
+import org.teamvoided.dusks_pixel_signs.datagen.assets.ModdedModelProvider
 import org.teamvoided.dusks_pixel_signs.datagen.assets.VanillaModelProvider
 
 object DusksPixelSignsData : DataGeneratorEntrypoint {
@@ -16,7 +18,8 @@ object DusksPixelSignsData : DataGeneratorEntrypoint {
 
         pack.addProvider(::VanillaModelProvider)
 
-//        gen.createBuiltinResourcePack(id("mod_compat"))
+        val compat = gen.createBuiltinResourcePack(MOD_COMPAT_PACK)
+        compat.addProvider(::ModdedModelProvider)
     }
 
 }

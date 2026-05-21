@@ -2,6 +2,10 @@ package org.teamvoided.dusks_pixel_signs.client
 
 import me.fzzyhmstrs.fzzy_config.api.ConfigApi
 import me.fzzyhmstrs.fzzy_config.api.RegisterType
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper
+import net.fabricmc.fabric.api.resource.ResourcePackActivationType
+import net.fabricmc.loader.api.FabricLoader
+import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -11,6 +15,8 @@ import org.teamvoided.dusks_pixel_signs.client.config.DusksPixelSignsConfig
 object DusksPixelSigns {
     const val MODID = "dusks_pixel_signs"
 
+    val MOD_COMPAT_PACK = id("mod_compat")
+
     @JvmField
     val log: Logger = LoggerFactory.getLogger(MODID)
 
@@ -18,7 +24,15 @@ object DusksPixelSigns {
     var config = ConfigApi.registerAndLoadConfig(::DusksPixelSignsConfig, RegisterType.CLIENT)
 
     fun init() {
-        log.info("Hello from Client")
+        log.info("Turning Sings in to pixels!")
+
+        FabricLoader.getInstance().getModContainer(MODID).ifPresent { mod ->
+            ResourceManagerHelper.registerBuiltinResourcePack(
+                MOD_COMPAT_PACK, mod,
+                Component.literal("Pixel Sign Mod Compat"),
+                ResourcePackActivationType.DEFAULT_ENABLED
+            )
+        }
     }
 
     fun id(namespace: String, path: String): ResourceLocation = ResourceLocation.fromNamespaceAndPath(namespace, path)

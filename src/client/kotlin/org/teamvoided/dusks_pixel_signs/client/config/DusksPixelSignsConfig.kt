@@ -13,7 +13,11 @@ import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.id
 
 class DusksPixelSignsConfig : Config(id(MODID)) {
 
-    var namespaces = ValidatedString().toList("minecraft")
+    var namespaces = ValidatedString().toList(
+        "minecraft",
+        "dusks_and_dungeons",
+        "enderscape",
+    )
 
     var signTextRenderDistance = ValidatedInt(64, Int.MAX_VALUE, 1)
 

@@ -11,7 +11,8 @@
     fzzy_config = "0.7.6+1.21"
     tomlkt = "0.3.7"
     # Compatibility
-    dnd = "0.1.0-alpha.2"
+    dusks_and_dungeons = "1.0.0-beta.7"
+    enderscape = "2.1.0"
     # Runtime
     modmenu = "11.0.3"
     emi = "1.1.22+1.21.1"
@@ -28,7 +29,8 @@
     fzzy-config = { module = "me.fzzyhmstrs:fzzy_config", version.ref = "fzzy_config" }
     tomlkt = { module = "net.peanuuutz.tomlkt:tomlkt", version.ref = "tomlkt" }
     # Compatibility
-    dnd = { module = "org.teamvoided:dusks_and_dungeons", version.ref = "dnd" }
+    dusks_and_dungeons = { module = "org.teamvoided:dusks_and_dungeons", version.ref = "dusks_and_dungeons" }
+    enderscape = { module = "maven.modrinth:enderscape", version.ref = "enderscape" }
     # Runtime
     modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modmenu" }
     emi = { module = "dev.emi:emi-fabric", version.ref = "emi" }

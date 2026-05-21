@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
 import net.minecraft.data.models.BlockModelGenerators
 import net.minecraft.data.models.ItemModelGenerators
 import net.minecraft.world.level.block.Blocks.*
-import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.id
+import org.teamvoided.dusks_pixel_signs.datagen.assets.ModelGenerators.block
 import org.teamvoided.dusks_pixel_signs.datagen.assets.ModelGenerators.pixelAccurateSign
 
 class VanillaModelProvider(o: FabricDataOutput) : FabricModelProvider(o) {
@@ -30,7 +30,5 @@ class VanillaModelProvider(o: FabricDataOutput) : FabricModelProvider(o) {
         pixelAccurateSign(CRIMSON_SIGN, CRIMSON_WALL_SIGN, CRIMSON_PLANKS, CRIMSON_STEM)
         pixelAccurateSign(WARPED_SIGN, WARPED_WALL_SIGN, WARPED_PLANKS, WARPED_STEM)
     }
-
-    fun block(path: String) = id("block/$path")
 
 }

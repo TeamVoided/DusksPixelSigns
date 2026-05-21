@@ -24,6 +24,10 @@ repositories {
         }
     }
     maven("https://api.modrinth.com/maven") { content { includeGroup("maven.modrinth") } }
+    // Mixson
+    exclusiveContent { forRepository { maven("https://jitpack.io") }; filter { includeGroup("com.github.ramixin") } }
+    // YACL
+    maven("https://maven.isxander.dev/releases")
     mavenLocal()
     mavenCentral()
 }
@@ -41,7 +45,11 @@ dependencies {
     modImplementation(libs.fzzy.config)
     modImplementation(libs.tomlkt)
     // Compatibility
-//    modImplementation(libs.dnd)
+    modImplementation(libs.dusks.and.dungeons)
+    modImplementation(libs.enderscape)
+    modImplementation("dev.isxander:yet-another-config-lib:3.6.6+1.21.1-fabric")
+    modImplementation("maven.modrinth:mixson:1.3.1")
+    modImplementation("maven.modrinth:lithostitched:1.7.7-fabric-21.1")
     // Runtime
     modImplementation(libs.modmenu)
     modCompileOnly("${libs.emi.get()}:api")

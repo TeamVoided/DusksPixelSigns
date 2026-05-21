@@ -89,6 +89,7 @@ object ModelGenerators {
     fun signModel(index: String) = block(id("block/parent/sign_$index"), PLANKS, WOOD)
     fun block(parent: ResourceLocation, vararg requiredTextures: TextureSlot): ModelTemplate =
         ModelTemplate(Optional.of(parent), Optional.empty(), *requiredTextures)
+    fun block(path: String) = id("block/$path")
 
     fun Block.model(): ResourceLocation = ModelLocationUtils.getModelLocation(this)
     fun Block.model(str: String) = model().suffix(str)
