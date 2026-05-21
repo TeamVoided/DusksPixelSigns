@@ -59,7 +59,7 @@ loom {
 
     mods {
         register(iridium.modId) {
-//            sourceSet(sourceSets.main.get())
+            sourceSet(sourceSets.main.get())
             sourceSet(sourceSets.getByName("client"))
         }
     }
@@ -83,6 +83,9 @@ loom {
             programArgs("--quickPlaySingleplayer", "test", "--username", username)
             uuid?.let { programArgs("--uuid", it) }
         }
+
+        forEach { it.vmArgs("-XX:+AllowEnhancedClassRedefinition") }
+
     }
 }
 
