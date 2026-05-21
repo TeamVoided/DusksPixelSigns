@@ -1,57 +1,39 @@
-package org.teamvoided.dusks_pixel_signs.client
+package org.teamvoided.dusks_pixel_signs.client.misc
 
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.renderer.texture.OverlayTexture
+import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
+import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.StandingSignBlock
 import net.minecraft.world.level.block.WallSignBlock
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.phys.Vec3
+import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.config
 
 object SignFunctions {
 
-    //region SignBlockEntityRendererMixin
-    //@JvmStatic
-    //fun renderText(blockEntity: SignBlockEntity, matrices: PoseStack, vertexConsumers: MultiBufferSource, light:Int, state:BlockState, block:SignBlock){
-    //    translateSign(matrices, -block.getYRotationDegrees(state), state)
-    //    if (state.block !is SignBlock) {
-    //        //matrices.translate(0f, 0.0625f, 0f);
-    //    }
-    //    renderSignText(
-    //        blockEntity.blockPos,
-    //        blockEntity.frontText,
-    //        matrices,
-    //        vertexConsumers,
-    //        light,
-    //        blockEntity.textLineHeight,
-    //        blockEntity.maxTextLineWidth,
-    //        true
-    //    )
-    //    renderSignText(
-    //        blockEntity.blockPos,
-    //        blockEntity.backText,
-    //        matrices,
-    //        vertexConsumers,
-    //        light,
-    //        blockEntity.textLineHeight,
-    //        blockEntity.maxTextLineWidth,
-    //        false
-    //    )
-    //}
-    //endregion
+    @JvmStatic
+    fun isBig(state: BlockState) = isBig(state.block)
 
-    //region SignEditScreenMixin
-    //@JvmStatic
-    //fun setTextAngles(matrices: MatrixStack, front: Boolean) {
-    //    val translation = Vec3d(0.0, 0.234375, 0.0626)
-    //    if (!front) {
-    //        matrices.rotate(Axis.Y_POSITIVE.rotationDegrees(180.0f))
-    //    }
-    //
-    //    val scale: Float = 0.015625f * 0.66666f
-    //    matrices.translate(translation.x, translation.y, translation.z)
-    //    matrices.scale(scale, -scale, scale)
-    //}
+    @JvmStatic
+    fun isBig(block: Block) = config.namespaces.contains(block.builtInRegistryHolder().key().location().namespace)
 
+    @JvmStatic
+    fun getTextTranslations(textOffset: Vec3, pos: BlockPos): Vec3 {
+        val block = Minecraft.getInstance().level?.getBlockState(pos)?.block ?: return textOffset
+
+        if (!isBig(block)) {
+            return textOffset
+        }
+
+        return when (block) {
+            is StandingSignBlock -> config.standingSign.get()
+            is WallSignBlock -> config.wallSign.asVec()
+            else -> textOffset
+        }
+    }
 
     @JvmStatic
     fun renderSignModelBackground(graphics: GuiGraphics, state: BlockState) {

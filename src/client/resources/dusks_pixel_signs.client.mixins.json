@@ -4,6 +4,7 @@
   "package": "org.teamvoided.dusks_pixel_signs.mixin.client",
   "compatibilityLevel": "JAVA_21",
   "client": [
+    "CombinedSignBlockMixin",
     "SignBlockEntityRendererMixin",
     "SignEditScreenMixin"
   ],
@@ -11,7 +12,6 @@
     "defaultRequire": 1
   },
   "mixins": [
-    "CombinedSignBlockMixin",
-    "WallSignBlockMixin"
+    "SignBlockMixin"
   ]
 }

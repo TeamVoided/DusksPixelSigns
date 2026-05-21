@@ -39,8 +39,9 @@ dependencies {
     modImplementation(libs.fabric.api)
     modImplementation(libs.fabric.kotlin)
     modImplementation(libs.fzzy.config)
-//    modImplementation(libs.dnd)
+    modImplementation(libs.tomlkt)
     // Compatibility
+//    modImplementation(libs.dnd)
     // Runtime
     modImplementation(libs.modmenu)
     modCompileOnly("${libs.emi.get()}:api")

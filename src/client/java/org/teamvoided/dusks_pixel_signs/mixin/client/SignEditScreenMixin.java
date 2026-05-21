@@ -9,7 +9,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.teamvoided.dusks_pixel_signs.client.SignFunctions;
+import org.teamvoided.dusks_pixel_signs.client.misc.SignFunctions;
+
+import static org.teamvoided.dusks_pixel_signs.client.misc.SignFunctions.isBig;
 
 @Mixin(SignEditScreen.class)
 public abstract class SignEditScreenMixin extends AbstractSignEditScreen {
@@ -19,13 +21,17 @@ public abstract class SignEditScreenMixin extends AbstractSignEditScreen {
 
     @Inject(method = "renderSignBackground", at = @At("HEAD"), cancellable = true)
     public void renderSignBackground(GuiGraphics graphics, BlockState state, CallbackInfo ci) {
-        SignFunctions.renderSignModelBackground(graphics, state);
-        ci.cancel();
+        if (isBig(state)) {
+            SignFunctions.renderSignModelBackground(graphics, state);
+            ci.cancel();
+        }
     }
 
     @Inject(method = "offsetSign", at = @At("HEAD"), cancellable = true)
     public void offsetSign(GuiGraphics graphics, BlockState state, CallbackInfo ci) {
-        SignFunctions.offsetSign(graphics, width);
-        ci.cancel();
+        if (isBig(state)) {
+            SignFunctions.offsetSign(graphics, width);
+            ci.cancel();
+        }
     }
 }
