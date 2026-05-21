@@ -1,5 +1,7 @@
 package org.teamvoided.dusks_pixel_signs.client.config
 
+import me.fzzyhmstrs.fzzy_config.annotations.Action
+import me.fzzyhmstrs.fzzy_config.annotations.RequiresAction
 import me.fzzyhmstrs.fzzy_config.config.Config
 import me.fzzyhmstrs.fzzy_config.config.ConfigGroup
 import me.fzzyhmstrs.fzzy_config.config.ConfigSection
@@ -13,6 +15,7 @@ import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.id
 
 class DusksPixelSignsConfig : Config(id(MODID)) {
 
+    @RequiresAction(Action.RELOAD_RESOURCES)
     var namespaces = ValidatedString().toList(
         "minecraft",
         "dusks_and_dungeons",
