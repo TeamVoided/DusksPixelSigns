@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/parent/sign_0",
-  "textures": {
-    "planks": "dusks_pixel_signs:block/bamboo_sign_planks",
-    "wood": "dusks_pixel_signs:block/bamboo_sign_log"
-  }
-}

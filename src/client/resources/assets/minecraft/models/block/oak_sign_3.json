@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/parent/sign_3",
-  "textures": {
-    "planks": "minecraft:block/oak_planks",
-    "wood": "minecraft:block/oak_log"
-  }
-}

@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
 import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns
 import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.log
-import org.teamvoided.dusks_pixel_signs.datagen.assets.ModelProvider
+import org.teamvoided.dusks_pixel_signs.datagen.assets.VanillaModelProvider
 
 object DusksPixelSignsData : DataGeneratorEntrypoint {
 
@@ -14,7 +14,9 @@ object DusksPixelSignsData : DataGeneratorEntrypoint {
         val pack = gen.createPack()
         log.info("Running \"${gen.modContainer.metadata.name}\" Datagen!")
 
-        pack.addProvider(::ModelProvider)
+        pack.addProvider(::VanillaModelProvider)
+
+//        gen.createBuiltinResourcePack(id("mod_compat"))
     }
 
 }
