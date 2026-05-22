@@ -14,17 +14,14 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.teamvoided.dusks_pixel_signs.client.misc.SignShapes;
 
-import static org.teamvoided.dusks_pixel_signs.client.misc.SignFunctions.isBig;
-
 @Mixin({SignBlock.class, WallSignBlock.class})
 public abstract class CombinedSignBlockMixin extends BaseEntityBlock {
     protected CombinedSignBlockMixin(Properties properties) {
         super(properties);
     }
 
-    @SuppressWarnings("ConstantValue")
     @ModifyReturnValue(method = "getShape", at = @At("RETURN"))
     protected VoxelShape customSignShape(VoxelShape original, BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        return (isBig(blockState) && (Object) this instanceof WallSignBlock) ? SignShapes.getWallShape(blockState.getValue(WallSignBlock.FACING)) : original;
+        return SignShapes.getSignShape(blockState, original) ;
     }
 }

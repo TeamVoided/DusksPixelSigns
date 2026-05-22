@@ -24,9 +24,14 @@ class DusksPixelSignsConfig : Config(id(MODID)) {
     var signTextRenderDistance = ValidatedInt(64, Int.MAX_VALUE, 1)
 
     @Suppress("unused")
-    var textTranslations = ConfigGroup()
-    var standingSign = ValidatedVec3(0.0078125, 0.234375, 0.0626)
+    var signOutlines = ConfigGroup()
+    var standingSignOutline = true
+    @ConfigGroup.Pop
+    var wallSignOutline = true
 
+    @Suppress("unused")
+    var textTranslations = ConfigGroup("text_translations", true)
+    var standingSign = ValidatedVec3(0.0078125, 0.234375, 0.0626)
     @ConfigGroup.Pop
     var wallSign = ValidatedVec3(0.0078125, 0.234375 + 0.0625, 0.0626)
 
