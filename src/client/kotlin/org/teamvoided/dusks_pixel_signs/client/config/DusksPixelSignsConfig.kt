@@ -12,7 +12,10 @@ import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.id
 class DusksPixelSignsConfig : Config(id(MODID)) {
 
     @RequiresAction(Action.RELOAD_RESOURCES)
-    var namespaces = ValidatedString().toList(
+    var namespaceListType = ListType.ALLOW_LIST
+
+    @RequiresAction(Action.RELOAD_RESOURCES)
+    var namespaceList = ValidatedString().toList(
         "minecraft",
         "dusks_and_dungeons",
         "enderscape",
@@ -27,4 +30,9 @@ class DusksPixelSignsConfig : Config(id(MODID)) {
     @ConfigGroup.Pop
     var wallSign = ValidatedVec3(0.0078125, 0.234375 + 0.0625, 0.0626)
 
+    @Suppress("unused")
+    enum class ListType(val eval: Boolean) {
+        ALLOW_LIST(true),
+        DENY_LIST(false)
+    }
 }

@@ -19,8 +19,13 @@ object SignFunctions {
 
     @JvmStatic
     @Suppress("DEPRECATION")
-    fun isBig(block: Block) = config.namespaces.contains(block.builtInRegistryHolder().key().location().namespace)
+    fun isBig(block: Block): Boolean {
+        return config.namespaceListType.eval == config.namespaceList.contains(
+            block.builtInRegistryHolder().key().location().namespace
+        )
+    }
 
+    // region Sing Translations
     @JvmStatic
     fun getTextTranslations(textOffset: Vec3, pos: BlockPos): Vec3 {
         val block = Minecraft.getInstance().level?.getBlockState(pos)?.block ?: return textOffset
