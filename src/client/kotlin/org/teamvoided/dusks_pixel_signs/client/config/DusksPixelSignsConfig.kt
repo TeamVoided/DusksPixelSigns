@@ -23,12 +23,12 @@ class DusksPixelSignsConfig : Config(id(MODID)) {
         "enderscape",
     )
 
-    var signTextRenderDistance = ValidatedInt(64, Int.MAX_VALUE, 1)
-    var hangingSignTextRenderDistance = ValidatedInt(64, Int.MAX_VALUE, 1)
+    var signRenderDistance = ValidatedInt(64, Int.MAX_VALUE, 1)
+    var hangingSignRenderDistance = ValidatedInt(64, Int.MAX_VALUE, 1)
 
     fun getSignRenderDist(renderer: BlockEntityRenderer<*>): Int =
-        if (renderer is HangingSignRenderer) hangingSignTextRenderDistance.get()
-        else signTextRenderDistance.get()
+        if (renderer is HangingSignRenderer) hangingSignRenderDistance.get()
+        else signRenderDistance.get()
 
     @Suppress("unused")
     var signOutlines = ConfigGroup()
