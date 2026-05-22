@@ -39,6 +39,6 @@ public abstract class SignBlockEntityRendererMixin implements BlockEntityRendere
 
     @Override
     public int getViewDistance() {
-        return config.getSignTextRenderDistance().get();
+        return config.getSignRenderDist(this);
     }
 }
