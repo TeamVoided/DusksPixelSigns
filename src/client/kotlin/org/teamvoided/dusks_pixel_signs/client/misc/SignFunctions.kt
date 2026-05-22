@@ -22,7 +22,7 @@ object SignFunctions {
     fun isBig(block: Block): Boolean {
         return config.namespaceListType.eval == config.namespaceList.contains(
             block.builtInRegistryHolder().key().location().namespace
-        )
+        ) && (block is StandingSignBlock || block is WallSignBlock)
     }
 
     // region Sing Translations
