@@ -38,7 +38,7 @@ class DusksPixelSignsConfig : Config(id(MODID)) {
     var wallSignOutline = true
 
     @Suppress("unused")
-    var textTranslations = ConfigGroup("text_translations", true)
+    var textOffsets = ConfigGroup("text_offsets", true)
     var standingSign = ValidatedVec3(0.0078125, 0.234375, 0.0626)
 
     @ConfigGroup.Pop
