@@ -29,8 +29,13 @@ object DusksPixelSigns {
         FabricLoader.getInstance().getModContainer(MODID).ifPresent { mod ->
             ResourceManagerHelper.registerBuiltinResourcePack(
                 MOD_COMPAT_PACK, mod,
-                Component.literal("Pixel Sign Mod Compat"),
+                Component.literal("Dusks Pixel Sign Mod Compat"),
                 ResourcePackActivationType.DEFAULT_ENABLED
+            )
+            ResourceManagerHelper.registerBuiltinResourcePack(
+                id("highlight_sign_compat"), mod,
+                Component.literal("Dusks Pixel Sign x Highlight"),
+                ResourcePackActivationType.NORMAL
             )
         }
     }
