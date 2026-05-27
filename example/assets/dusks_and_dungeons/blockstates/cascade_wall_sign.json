@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "dusks_and_dungeons:block/cascade_wall_sign",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "dusks_and_dungeons:block/cascade_wall_sign"
+    },
+    "facing=south": {
+      "model": "dusks_and_dungeons:block/cascade_wall_sign",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "dusks_and_dungeons:block/cascade_wall_sign",
+      "y": 270
+    }
+  }
+}

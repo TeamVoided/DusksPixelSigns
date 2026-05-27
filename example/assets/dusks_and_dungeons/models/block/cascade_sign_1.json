@@ -1,0 +1,7 @@
+{
+  "parent": "dusks_pixel_signs:block/parent/sign_1",
+  "textures": {
+    "planks": "dusks_and_dungeons:block/cascade_planks",
+    "wood": "dusks_and_dungeons:block/cascade_log"
+  }
+}
