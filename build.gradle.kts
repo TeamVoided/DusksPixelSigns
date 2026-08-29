@@ -16,12 +16,16 @@ repositories {
     maven("https://teamvoided.org/releases") { content { includeGroup("org.teamvoided") } }
     maven("https://teamvoided.org/snapshots") { content { includeGroup("org.teamvoided") } }
     maven("https://maven.fzzyhmstrs.me/") { name = "FzzyMaven"; content { includeGroup("me.fzzyhmstrs") } }
-    maven("https://maven.terraformersmc.com/") {
+    maven("https://maven.terraformersmc.com/") { // ModMenu, EMI
         name = "Terraformers"
         content {
             includeGroup("com.terraformersmc")
             includeGroup("dev.emi")
         }
+    }
+    maven("https://maven.ryanhcode.dev/releases") { // ImGuiMC
+        name = "RyanHCode Maven"
+        content { includeGroup("foundry.imguimc") }
     }
     maven("https://api.modrinth.com/maven") { content { includeGroup("maven.modrinth") } }
     // Mixson
@@ -55,8 +59,8 @@ dependencies {
     modCompileOnly("${libs.emi.get()}:api")
     modLocalRuntime(libs.emi)
     // Testing
-    modImplementation(libs.creative.works)
-    modImplementation(libs.imguimc)
+//    modImplementation(libs.creative.works)
+//    modImplementation(libs.imguimc)
 }
 
 val username = "vDev"

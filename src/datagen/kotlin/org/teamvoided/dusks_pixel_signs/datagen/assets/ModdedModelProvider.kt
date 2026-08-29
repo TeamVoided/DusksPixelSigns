@@ -7,6 +7,7 @@ import net.minecraft.data.models.BlockModelGenerators
 import net.minecraft.data.models.ItemModelGenerators
 import org.teamvoided.dusks_and_dungeons.init.DnDBlocks
 import org.teamvoided.dusks_pixel_signs.datagen.assets.ModelGenerators.pixelAccurateSign
+import org.teamvoided.dusks_pixel_signs.datagen.assets.ModelGenerators.pixelAccurateTintedSign
 import net.bunten.enderscape.registry.EnderscapeBlocks as EscBlocks
 
 class ModdedModelProvider(o: FabricDataOutput) : FabricModelProvider(o) {
@@ -20,6 +21,12 @@ class ModdedModelProvider(o: FabricDataOutput) : FabricModelProvider(o) {
     fun BlockModelGenerators.generateDnDModels() {
         pixelAccurateSign(
             DnDBlocks.CASCADE_SIGN, DnDBlocks.CASCADE_WALL_SIGN, DnDBlocks.CASCADE_PLANKS, DnDBlocks.CASCADE_LOG
+        )
+        pixelAccurateSign(
+            DnDBlocks.SYPIA_SIGN, DnDBlocks.SYPIA_WALL_SIGN, DnDBlocks.SYPIA_PLANKS, DnDBlocks.SYPIA_LOG
+        )
+        pixelAccurateTintedSign(
+            DnDBlocks.VERDANT_SIGN, DnDBlocks.VERDANT_WALL_SIGN, DnDBlocks.VERDANT_PLANKS, DnDBlocks.VERDANT_LOG
         )
     }
 

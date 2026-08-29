@@ -26,6 +26,12 @@ object ModelGenerators {
     val SIGN_675_MODEL = signModel("3")
     val WALL_SIGN_MODEL = block(id("block/parent/wall_sign"), PLANKS)
 
+    val SIGN_MODEL_TINTED = tintedSignModel("0")
+    val SIGN_255_MODEL_TINTED = tintedSignModel("1")
+    val SIGN_45_MODEL_TINTED = tintedSignModel("2")
+    val SIGN_675_MODEL_TINTED = tintedSignModel("3")
+    val WALL_SIGN_MODEL_TINTED = block(id("block/parent/tinted_wall_sign"), PLANKS)
+
     fun BlockModelGenerators.pixelAccurateSign(sign: Block, wallSign: Block, planks: Block, log: Block) {
         pixelAccurateSign(sign, wallSign, planks.model(), log.model())
     }
@@ -45,6 +51,33 @@ object ModelGenerators {
         val rotate225 = SIGN_255_MODEL.create(sign.model("_1"), texture, modelOutput)
         val rotate45 = SIGN_45_MODEL.create(sign.model("_2"), texture, modelOutput)
         val rotate675 = SIGN_675_MODEL.create(sign.model("_3"), texture, modelOutput)
+
+        blockStateOutput.accept(
+            MultiVariantGenerator.multiVariant(sign)
+                .with(create16RotationStates(default, rotate225, rotate45, rotate675))
+        )
+    }
+
+
+    fun BlockModelGenerators.pixelAccurateTintedSign(sign: Block, wallSign: Block, planks: Block, log: Block) {
+        pixelAccurateTintedSign(sign, wallSign, planks.model(), log.model())
+    }
+
+    fun BlockModelGenerators.pixelAccurateTintedSign(
+        sign: Block, wallSign: Block, planks: ResourceLocation, log: ResourceLocation,
+    ) {
+        pixelAccurateTintedSign(sign, planks, log)
+        pixelAccurateTintedWallSign(wallSign, planks)
+    }
+
+    fun BlockModelGenerators.pixelAccurateTintedSign(sign: Block, planks: ResourceLocation, log: ResourceLocation) {
+        val texture: TextureMapping = TextureMapping()
+            .put(PLANKS, planks)
+            .put(WOOD, log)
+        val default = SIGN_MODEL_TINTED.create(sign.model("_0"), texture, modelOutput)
+        val rotate225 = SIGN_255_MODEL_TINTED.create(sign.model("_1"), texture, modelOutput)
+        val rotate45 = SIGN_45_MODEL_TINTED.create(sign.model("_2"), texture, modelOutput)
+        val rotate675 = SIGN_675_MODEL_TINTED.create(sign.model("_3"), texture, modelOutput)
 
         blockStateOutput.accept(
             MultiVariantGenerator.multiVariant(sign)
@@ -84,9 +117,16 @@ object ModelGenerators {
         createNonTemplateHorizontalBlock(wallSign)
     }
 
+    fun BlockModelGenerators.pixelAccurateTintedWallSign(wallSign: Block, planks: ResourceLocation) {
+        val texture = TextureMapping().put(PLANKS, planks)
+        WALL_SIGN_MODEL_TINTED.create(wallSign, texture, modelOutput)
+        createNonTemplateHorizontalBlock(wallSign)
+    }
+
     // Generics
 
     fun signModel(index: String) = block(id("block/parent/sign_$index"), PLANKS, WOOD)
+    fun tintedSignModel(index: String) = block(id("block/parent/tinted_sign_$index"), PLANKS, WOOD)
     fun block(parent: ResourceLocation, vararg requiredTextures: TextureSlot): ModelTemplate =
         ModelTemplate(Optional.of(parent), Optional.empty(), *requiredTextures)
     fun block(path: String) = id("block/$path")

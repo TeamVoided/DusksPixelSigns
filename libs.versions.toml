@@ -1,7 +1,7 @@
 [versions]
     java = "21"
     kotlin = "2.3.0"
-    fabric_loom = "1.16-SNAPSHOT"
+    fabric_loom = "1.17-SNAPSHOT"
     iridium = "4.0.0"
     # Dependencies
     minecraft = "1.21.1"
@@ -11,13 +11,13 @@
     fzzy_config = "0.7.6+1.21"
     tomlkt = "0.3.7"
     # Compatibility
-    dusks_and_dungeons = "1.0.0-beta.7"
+    dusks_and_dungeons = "1.0.0-beta.9"
     enderscape = "2.1.0"
     # Runtime
     modmenu = "11.0.3"
     emi = "1.1.22+1.21.1"
     # Testing
-    creative_works = "0.5.0"
+    creative_works = "0.7.0"
     imguimc = "1.21.1-1.0.8"
 
 [libraries]
