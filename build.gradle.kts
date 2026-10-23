@@ -54,6 +54,9 @@ dependencies {
     modImplementation("dev.isxander:yet-another-config-lib:3.6.6+1.21.1-fabric")
     modImplementation("maven.modrinth:mixson:1.3.1")
     modImplementation("maven.modrinth:lithostitched:1.7.7-fabric-21.1")
+    // Vanilla Backport
+    modImplementation("maven.modrinth:i6fiqm5y:lCYBF5gk")
+    modImplementation("maven.modrinth:6xwxDTgf:zV9qNgaH")
     // Runtime
     modImplementation(libs.modmenu)
     modCompileOnly("${libs.emi.get()}:api")

@@ -1,6 +1,7 @@
 package org.teamvoided.dusks_pixel_signs.datagen.assets
 
 
+import com.blackgear.vanillabackport.common.registries.blocks.ModBlocks
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
 import net.minecraft.data.models.BlockModelGenerators
@@ -16,6 +17,7 @@ class ModdedModelProvider(o: FabricDataOutput) : FabricModelProvider(o) {
     override fun generateBlockStateModels(gen: BlockModelGenerators) {
         gen.generateDnDModels()
         gen.generateEnderscapeModels()
+        gen.generateVanillaBackport()
     }
 
     fun BlockModelGenerators.generateDnDModels() {
@@ -35,10 +37,27 @@ class ModdedModelProvider(o: FabricDataOutput) : FabricModelProvider(o) {
             EscBlocks.VEILED_SIGN, EscBlocks.VEILED_WALL_SIGN, EscBlocks.VEILED_PLANKS, EscBlocks.VEILED_LOG
         )
         pixelAccurateSign(
-            EscBlocks.CELESTIAL_SIGN, EscBlocks.CELESTIAL_WALL_SIGN, EscBlocks.CELESTIAL_PLANKS, EscBlocks.CELESTIAL_STEM
+            EscBlocks.CELESTIAL_SIGN,
+            EscBlocks.CELESTIAL_WALL_SIGN,
+            EscBlocks.CELESTIAL_PLANKS,
+            EscBlocks.CELESTIAL_STEM
         )
         pixelAccurateSign(
-            EscBlocks.MURUBLIGHT_SIGN, EscBlocks.MURUBLIGHT_WALL_SIGN, EscBlocks.MURUBLIGHT_PLANKS, EscBlocks.MURUBLIGHT_STEM
+            EscBlocks.MURUBLIGHT_SIGN,
+            EscBlocks.MURUBLIGHT_WALL_SIGN,
+            EscBlocks.MURUBLIGHT_PLANKS,
+            EscBlocks.MURUBLIGHT_STEM
+        )
+    }
+
+    fun BlockModelGenerators.generateVanillaBackport() {
+        pixelAccurateSign(
+            ModBlocks.PALE_OAK_SIGN.first.get(), ModBlocks.PALE_OAK_SIGN.second.get(),
+            ModBlocks.PALE_OAK_PLANKS.get(), ModBlocks.PALE_OAK_LOG.get(),
+        )
+        pixelAccurateSign(
+            ModBlocks.POPLAR_SIGN.first.get(), ModBlocks.POPLAR_SIGN.second.get(),
+            ModBlocks.POPLAR_PLANKS.get(), ModBlocks.POPLAR_LOG.get(),
         )
     }
 
