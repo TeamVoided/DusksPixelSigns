@@ -1,20 +1,20 @@
 [versions]
     java = "21"
     kotlin = "2.3.0"
-    fabric_loom = "1.17-SNAPSHOT"
+    fabric_loom = "1.19-SNAPSHOT"
     iridium = "4.0.0"
     # Dependencies
-    minecraft = "1.21.1"
-    fabric_loader = "0.19.2"
-    fabric_api = "0.116.11+1.21.1"
+    minecraft = "1.21.11"
+    fabric_loader = "0.20.1"
+    fabric_api = "0.141.6+1.21.11"
     fabric_kotlin = "1.13.8+kotlin.2.3.0"
-    fzzy_config = "0.7.6+1.21"
+    fzzy_config = "0.7.7+1.21.11"
     tomlkt = "0.3.7"
     # Compatibility
     dusks_and_dungeons = "1.0.0-beta.9"
-    enderscape = "2.1.0"
+    enderscape = "3cYKvu3m"
     # Runtime
-    modmenu = "11.0.3"
+    modmenu = "17.0.1"
     emi = "1.1.22+1.21.1"
     # Testing
     creative_works = "0.7.0"
@@ -30,10 +30,10 @@
     tomlkt = { module = "net.peanuuutz.tomlkt:tomlkt", version.ref = "tomlkt" }
     # Compatibility
     dusks_and_dungeons = { module = "org.teamvoided:dusks_and_dungeons", version.ref = "dusks_and_dungeons" }
-    enderscape = { module = "maven.modrinth:enderscape", version.ref = "enderscape" }
+    enderscape = { module = "maven.modrinth:btCrWvHr", version.ref = "enderscape" }
     # Runtime
     modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modmenu" }
-    emi = { module = "dev.emi:emi-fabric", version.ref = "emi" }
+#    emi = { module = "dev.emi:emi-fabric", version.ref = "emi" }
     # Testing
     creative-works = { module = "org.teamvoided:creative_works", version.ref = "creative_works" }
     imguimc = { module = "maven.modrinth:imgui-mc", version.ref = "imguimc" }

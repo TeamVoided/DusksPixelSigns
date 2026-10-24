@@ -1,11 +1,14 @@
 package org.teamvoided.dusks_pixel_signs.mixin.client;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen;
 import net.minecraft.client.gui.screens.inventory.SignEditScreen;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -15,23 +18,35 @@ import static org.teamvoided.dusks_pixel_signs.client.misc.SignFunctions.isBig;
 
 @Mixin(SignEditScreen.class)
 public abstract class SignEditScreenMixin extends AbstractSignEditScreen {
+
+    @Unique private boolean dusksPixelSigns$bigSign = false;
+    @Unique private Identifier dusksPixelSigns$texture;
+    @Unique private int dusksPixelSigns$displayedHeight;
+
     public SignEditScreenMixin(SignBlockEntity sign, boolean fromFront, boolean shouldFilterText) {
         super(sign, fromFront, shouldFilterText);
     }
 
+    @Inject(method = "<init>", at = @At("RETURN"))
+    void setupRenderData(SignBlockEntity sign, boolean isFrontText, boolean shouldFilter, CallbackInfo ci) {
+        dusksPixelSigns$bigSign = isBig(sign.getBlockState());
+        if (dusksPixelSigns$bigSign) {
+            dusksPixelSigns$texture = Identifier.parse(woodType.name()).withPath((name) -> "textures/gui/signs/" + name + ".png");
+            dusksPixelSigns$displayedHeight = (sign.getBlockState().getBlock() instanceof WallSignBlock) ? 8 : 16;
+        }
+    }
+
     @Inject(method = "renderSignBackground", at = @At("HEAD"), cancellable = true)
-    public void renderSignBackground(GuiGraphics graphics, BlockState state, CallbackInfo ci) {
-        if (isBig(state)) {
-            SignFunctions.renderSignModelBackground(graphics, state);
+    public void renderSignBackground(GuiGraphics graphics, CallbackInfo ci) {
+        if (dusksPixelSigns$bigSign) {
+            SignFunctions.renderSignModelBackground(graphics, dusksPixelSigns$texture, dusksPixelSigns$displayedHeight);
             ci.cancel();
         }
     }
 
-    @Inject(method = "offsetSign", at = @At("HEAD"), cancellable = true)
-    public void offsetSign(GuiGraphics graphics, BlockState state, CallbackInfo ci) {
-        if (isBig(state)) {
-            SignFunctions.offsetSign(graphics, width);
-            ci.cancel();
-        }
+    @ModifyReturnValue(method = "getSignYOffset", at = @At("RETURN"))
+    public float offsetSign(float original) {
+        return dusksPixelSigns$bigSign ? SignFunctions.getSignYOffset() : original;
     }
+
 }

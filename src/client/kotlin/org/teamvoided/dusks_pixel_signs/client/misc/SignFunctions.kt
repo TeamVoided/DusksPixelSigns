@@ -1,10 +1,8 @@
 package org.teamvoided.dusks_pixel_signs.client.misc
 
-import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
-import net.minecraft.client.renderer.texture.OverlayTexture
-import net.minecraft.core.BlockPos
-import net.minecraft.core.Direction
+import net.minecraft.client.renderer.RenderPipelines
+import net.minecraft.resources.Identifier
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.StandingSignBlock
 import net.minecraft.world.level.block.WallSignBlock
@@ -21,15 +19,14 @@ object SignFunctions {
     @Suppress("DEPRECATION")
     fun isBig(block: Block): Boolean {
         return config.namespaceListType.eval == config.namespaceList.contains(
-            block.builtInRegistryHolder().key().location().namespace
+            block.builtInRegistryHolder().key().identifier().namespace
         ) && (block is StandingSignBlock || block is WallSignBlock)
     }
 
     // region Sing Translations
     @JvmStatic
-    fun getTextTranslations(textOffset: Vec3, pos: BlockPos): Vec3 {
-        val block = Minecraft.getInstance().level?.getBlockState(pos)?.block ?: return textOffset
-
+    fun getTextTranslations(textOffset: Vec3, state: BlockState): Vec3 {
+        val block = state.block
         if (!isBig(block)) {
             return textOffset
         }
@@ -42,21 +39,13 @@ object SignFunctions {
     }
 
     @JvmStatic
-    fun renderSignModelBackground(graphics: GuiGraphics, state: BlockState) {
-        val scale = 90f
-        if (state.block is WallSignBlock) {
-            graphics.pose().translate(-scale / 2, scale * 0.484375f, 1f) // 7.75/16
-        } else {
-            graphics.pose().translate(-scale / 2, scale * 0.734375f, 1f) // 11.75/16
-        }
-        graphics.pose().scale(scale, -scale, 1f)
-        Minecraft.getInstance().blockRenderer.renderSingleBlock(
-            state.block.defaultBlockState().trySetValue(WallSignBlock.FACING, Direction.SOUTH),
-            graphics.pose(), graphics.bufferSource(), 15728880, OverlayTexture.NO_OVERLAY
-        )
+    fun renderSignModelBackground(graphics: GuiGraphics, texture: Identifier, displayedHeight: Int) {
+        graphics.pose().translate(0.0f, 23f)
+        graphics.pose().scale(6.0f, 6.0f)
+        graphics.blit(RenderPipelines.GUI_TEXTURED, texture, -8, -8, 0f, 0f, 16, displayedHeight, 16, 16)
     }
 
     @JvmStatic
-    fun offsetSign(graphics: GuiGraphics, width: Float) = graphics.pose().translate(width / 2f, 125f, 50f)
+    fun getSignYOffset() = 125f
     //endregion
 }

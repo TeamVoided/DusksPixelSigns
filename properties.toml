@@ -1,11 +1,11 @@
 mod_name = "Dusk's Pixel Signs"
 mod_id = "dusks_pixel_signs"
 mod_group = "org.teamvoided"
-mod_version = "1.1.0+1.21.1"
+mod_version = "1.2.0+1.21.11"
 mod_description = "Changes signs from 2/3 scale to full scale, and from entity to block models!"
 github_repo = "Teamvoided/DusksPixelSigns"
 discord_invite = "https://discord.gg/KZ5Q364hEg"
 authors = [ "DuskAutumnStorm", "TheEnderCore" ]
 license = "MIT"
-min_minecraft = "1.21.1" # Inclusive
-max_minecraft = "1.21.2" # Exclusive
+min_minecraft = "1.21.11" # Inclusive
+max_minecraft = "26.1" # Exclusive

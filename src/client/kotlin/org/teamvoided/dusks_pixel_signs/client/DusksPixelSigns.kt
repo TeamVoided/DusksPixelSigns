@@ -2,11 +2,11 @@ package org.teamvoided.dusks_pixel_signs.client
 
 import me.fzzyhmstrs.fzzy_config.api.ConfigApi
 import me.fzzyhmstrs.fzzy_config.api.RegisterType
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper
-import net.fabricmc.fabric.api.resource.ResourcePackActivationType
+import net.fabricmc.fabric.api.resource.v1.ResourceLoader
+import net.fabricmc.fabric.api.resource.v1.pack.PackActivationType
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.network.chat.Component
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.resources.Identifier
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.teamvoided.dusks_pixel_signs.client.config.DusksPixelSignsConfig
@@ -16,6 +16,7 @@ object DusksPixelSigns {
     const val MODID = "dusks_pixel_signs"
 
     val MOD_COMPAT_PACK = id("mod_compat")
+    val HIGHLIGHT_COMPAT = id("highlight_sign_compat")
 
     @JvmField
     val log: Logger = LoggerFactory.getLogger(MODID)
@@ -27,20 +28,21 @@ object DusksPixelSigns {
         log.info("Turning Sings in to pixels!")
 
         FabricLoader.getInstance().getModContainer(MODID).ifPresent { mod ->
-            ResourceManagerHelper.registerBuiltinResourcePack(
+            ResourceLoader.registerBuiltinPack(
                 MOD_COMPAT_PACK, mod,
                 Component.literal("Dusks Pixel Sign Mod Compat"),
-                ResourcePackActivationType.DEFAULT_ENABLED
+                PackActivationType.DEFAULT_ENABLED
             )
-            ResourceManagerHelper.registerBuiltinResourcePack(
-                id("highlight_sign_compat"), mod,
+            ResourceLoader.registerBuiltinPack(
+                HIGHLIGHT_COMPAT, mod,
                 Component.literal("Dusks Pixel Sign x Highlight"),
-                ResourcePackActivationType.NORMAL
+                PackActivationType.NORMAL
             )
         }
     }
 
-    fun id(namespace: String, path: String): ResourceLocation = ResourceLocation.fromNamespaceAndPath(namespace, path)
-    fun mc(path: String): ResourceLocation = ResourceLocation.withDefaultNamespace(path)
-    fun id(path: String) = id(MODID, path)
+    fun id(namespace: String, path: String): Identifier = Identifier.fromNamespaceAndPath(namespace, path)
+    fun mc(path: String): Identifier = Identifier.withDefaultNamespace(path)
+    fun id(path: String): Identifier = id(MODID, path)
+
 }

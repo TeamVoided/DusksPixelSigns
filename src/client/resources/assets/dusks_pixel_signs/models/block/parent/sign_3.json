@@ -25,7 +25,7 @@
 				"east":  {"uv": [0, 0, 16, 8],   "texture": "#planks"},
 				"south": {"uv": [0, 8, 2, 16],   "texture": "#planks"},
 				"west":  {"uv": [0, 8, 16, 16],  "texture": "#planks"},
-				"up":    {"uv": [0, 14, 16, 16], "texture": "#planks", "rotation": 90},
+				"up":    {"uv": [0, 14, 16, 16], "texture": "#planks", "rotation": 90, "cullface": "up"},
 				"down":  {"uv": [0, 10, 16, 12], "texture": "#planks", "rotation": 270}
 			}
 		}

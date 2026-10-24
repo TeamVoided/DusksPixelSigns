@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SignBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 import org.spongepowered.asm.mixin.Mixin;
 
 import static org.teamvoided.dusks_pixel_signs.client.misc.SignFunctions.isBig;
@@ -17,8 +18,8 @@ public abstract class SignBlockMixin extends BaseEntityBlock {
     }
 
     @Override
-    protected @NotNull RenderShape getRenderShape(BlockState blockState) {
-        return isBig(blockState) ? RenderShape.MODEL : super.getRenderShape(blockState);
+    protected @NotNull RenderShape getRenderShape(@NonNull BlockState blockState) {
+        return isBig(blockState) ? RenderShape.MODEL : RenderShape.INVISIBLE;
     }
 
 }

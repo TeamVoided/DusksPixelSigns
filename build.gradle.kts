@@ -49,18 +49,18 @@ dependencies {
     modImplementation(libs.fzzy.config)
     modImplementation(libs.tomlkt)
     // Compatibility
-    modImplementation(libs.dusks.and.dungeons)
+//    modImplementation(libs.dusks.and.dungeons)
     modImplementation(libs.enderscape)
-    modImplementation("dev.isxander:yet-another-config-lib:3.6.6+1.21.1-fabric")
-    modImplementation("maven.modrinth:mixson:1.3.1")
-    modImplementation("maven.modrinth:lithostitched:1.7.7-fabric-21.1")
+    modImplementation("dev.isxander:yet-another-config-lib:3.8.2+1.21.11-fabric")
+    modImplementation("com.github.ramixin:mixson-fabric:f45ce6470a")
+    modImplementation("maven.modrinth:lithostitched:1.7.2-fabric-21.11")
     // Vanilla Backport
-    modImplementation("maven.modrinth:i6fiqm5y:lCYBF5gk")
-    modImplementation("maven.modrinth:6xwxDTgf:zV9qNgaH")
+//    modImplementation("maven.modrinth:i6fiqm5y:lCYBF5gk")
+//    modImplementation("maven.modrinth:6xwxDTgf:zV9qNgaH")
     // Runtime
     modImplementation(libs.modmenu)
-    modCompileOnly("${libs.emi.get()}:api")
-    modLocalRuntime(libs.emi)
+//    modCompileOnly("${libs.emi.get()}:api")
+//    modLocalRuntime(libs.emi)
     // Testing
 //    modImplementation(libs.creative.works)
 //    modImplementation(libs.imguimc)

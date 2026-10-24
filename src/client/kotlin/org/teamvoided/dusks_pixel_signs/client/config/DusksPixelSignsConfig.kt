@@ -19,16 +19,19 @@ class DusksPixelSignsConfig : Config(id(MODID)) {
     @RequiresAction(Action.RELOAD_RESOURCES)
     var namespaceList = ValidatedString().toList(
         "minecraft",
-        "dusks_and_dungeons",
+//        "dusks_and_dungeons",
         "enderscape",
     )
 
     var signRenderDistance = ValidatedInt(64, Int.MAX_VALUE, 1)
     var hangingSignRenderDistance = ValidatedInt(64, Int.MAX_VALUE, 1)
 
-    fun getSignRenderDist(renderer: BlockEntityRenderer<*>): Int =
-        if (renderer is HangingSignRenderer) hangingSignRenderDistance.get()
-        else signRenderDistance.get()
+    fun getSignRenderDist(renderer: BlockEntityRenderer<*, *>): Int {
+        return if (renderer is HangingSignRenderer)
+            hangingSignRenderDistance.get()
+        else
+            signRenderDistance.get()
+    }
 
     @Suppress("unused")
     var signOutlines = ConfigGroup()
@@ -49,4 +52,5 @@ class DusksPixelSignsConfig : Config(id(MODID)) {
         ALLOW_LIST(true),
         DENY_LIST(false)
     }
+
 }
