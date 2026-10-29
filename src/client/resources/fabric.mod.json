@@ -19,7 +19,6 @@
       "environment": "client"
     }
   ],
-  "accessWidener": "dusks_pixel_signs.classtweaker",
   "depends": {
     "java": ">=${java}",
     "minecraft": ">=${min_minecraft} <${max_minecraft}",

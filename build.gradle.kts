@@ -37,33 +37,26 @@ repositories {
 }
 
 dependencies {
-    modImplementation(fileTree("libs"))
+    implementation(fileTree("libs"))
 
     minecraft(libs.minecraft)
-    mappings(loom.officialMojangMappings())
-
     // Dependencies
-    modImplementation(libs.fabric.loader)
-    modImplementation(libs.fabric.api)
-    modImplementation(libs.fabric.kotlin)
-    modImplementation(libs.fzzy.config)
-    modImplementation(libs.tomlkt)
+    implementation(libs.fabric.loader)
+    implementation(libs.fabric.api)
+    implementation(libs.fabric.kotlin)
+    implementation(libs.fzzy.config)
+    implementation(libs.tomlkt)
     // Compatibility
-//    modImplementation(libs.dusks.and.dungeons)
-    modImplementation(libs.enderscape)
-    modImplementation("dev.isxander:yet-another-config-lib:3.8.2+1.21.11-fabric")
-    modImplementation("com.github.ramixin:mixson-fabric:f45ce6470a")
-    modImplementation("maven.modrinth:lithostitched:1.7.2-fabric-21.11")
-    // Vanilla Backport
-//    modImplementation("maven.modrinth:i6fiqm5y:lCYBF5gk")
-//    modImplementation("maven.modrinth:6xwxDTgf:zV9qNgaH")
+//    implementation(libs.dusks.and.dungeons)
+    implementation(libs.enderscape)
+    implementation("maven.modrinth:trim-patcher:2.1-mc26.1-fabric")
+    implementation("dev.isxander:yet-another-config-lib:3.9.5+26.1-fabric")
+    implementation("maven.modrinth:lithostitched:1.7.13-fabric-26.1")
     // Runtime
-    modImplementation(libs.modmenu)
-//    modCompileOnly("${libs.emi.get()}:api")
-//    modLocalRuntime(libs.emi)
+    implementation(libs.modmenu)
     // Testing
-//    modImplementation(libs.creative.works)
-//    modImplementation(libs.imguimc)
+//    implementation(libs.creative.works)
+//    implementation(libs.imguimc)
 }
 
 val username = "vDev"
@@ -71,7 +64,7 @@ val uuid = iridium.fetchUUID(username) // Dev & vDev will always be null
 
 loom {
     splitEnvironmentSourceSets()
-    accessWidenerPath.set(File("src/client/resources/${iridium.modId}.classtweaker"))
+//    accessWidenerPath.set(File("src/client/resources/${iridium.modId}.classtweaker"))
 
     mods {
         register(iridium.modId) {
@@ -163,7 +156,7 @@ uploadScript {
 
     version += libs.versions.minecraft.get()
     versionName = "${iridium.modName()} ${iridium.modVersion}"
-    jarTask = tasks.remapJar.get()
+    jarTask = tasks.jar.get()
 
     dependency("P7dR8mSH", "fabric-api")
     dependency("Ha28R6CL", "fabric-language-kotlin")

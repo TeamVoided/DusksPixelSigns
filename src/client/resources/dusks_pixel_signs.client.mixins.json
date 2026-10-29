@@ -4,14 +4,15 @@
   "package": "org.teamvoided.dusks_pixel_signs.mixin.client",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "CombinedSignBlockMixin",
     "AbstractSignRendererMixin",
+    "CombinedSignBlockMixin",
     "SignEditScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "mixins": [
-    "SignBlockMixin"
+    "SignBlockMixin",
+    "StandingSignRendererMixin"
   ]
 }

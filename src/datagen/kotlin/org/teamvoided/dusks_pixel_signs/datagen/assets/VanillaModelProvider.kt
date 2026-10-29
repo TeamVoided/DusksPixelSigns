@@ -2,14 +2,14 @@ package org.teamvoided.dusks_pixel_signs.datagen.assets
 
 
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput
 import net.minecraft.client.data.models.BlockModelGenerators
 import net.minecraft.client.data.models.ItemModelGenerators
 import net.minecraft.world.level.block.Blocks.*
 import org.teamvoided.dusks_pixel_signs.datagen.assets.ModelGenerators.block
 import org.teamvoided.dusks_pixel_signs.datagen.assets.ModelGenerators.pixelAccurateSign
 
-class VanillaModelProvider(o: FabricDataOutput) : FabricModelProvider(o) {
+class VanillaModelProvider(o: FabricPackOutput) : FabricModelProvider(o) {
 
     override fun generateItemModels(gen: ItemModelGenerators) = Unit
     override fun generateBlockStateModels(gen: BlockModelGenerators) {

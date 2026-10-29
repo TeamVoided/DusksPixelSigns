@@ -1,9 +1,10 @@
 package org.teamvoided.dusks_pixel_signs.mixin.client;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen;
 import net.minecraft.client.gui.screens.inventory.SignEditScreen;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
@@ -12,9 +13,9 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.teamvoided.dusks_pixel_signs.client.misc.SignFunctions;
+import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns;
 
-import static org.teamvoided.dusks_pixel_signs.client.misc.SignFunctions.isBig;
+import static org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.isBig;
 
 @Mixin(SignEditScreen.class)
 public abstract class SignEditScreenMixin extends AbstractSignEditScreen {
@@ -36,17 +37,19 @@ public abstract class SignEditScreenMixin extends AbstractSignEditScreen {
         }
     }
 
-    @Inject(method = "renderSignBackground", at = @At("HEAD"), cancellable = true)
-    public void renderSignBackground(GuiGraphics graphics, CallbackInfo ci) {
+    @Inject(method = "extractSignBackground", at = @At("HEAD"), cancellable = true)
+    public void renderSignBackground(GuiGraphicsExtractor graphics, CallbackInfo ci) {
         if (dusksPixelSigns$bigSign) {
-            SignFunctions.renderSignModelBackground(graphics, dusksPixelSigns$texture, dusksPixelSigns$displayedHeight);
+            graphics.pose().translate(0f, 23f);
+            graphics.pose().scale(6f, 6f);
+            graphics.blit(RenderPipelines.GUI_TEXTURED, dusksPixelSigns$texture, -8, -8, 0f, 0f, 16, dusksPixelSigns$displayedHeight, 16, 16);
             ci.cancel();
         }
     }
 
     @ModifyReturnValue(method = "getSignYOffset", at = @At("RETURN"))
     public float offsetSign(float original) {
-        return dusksPixelSigns$bigSign ? SignFunctions.getSignYOffset() : original;
+        return dusksPixelSigns$bigSign ? DusksPixelSigns.getSignYOffset() : original;
     }
 
 }

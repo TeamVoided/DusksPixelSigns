@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.shapes.Shapes
 import net.minecraft.world.phys.shapes.VoxelShape
 import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.config
-import org.teamvoided.dusks_pixel_signs.client.misc.SignFunctions.isBig
+import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.isBig
 
 object SignShapes {
 

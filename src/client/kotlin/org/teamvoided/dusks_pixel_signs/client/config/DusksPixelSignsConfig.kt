@@ -8,10 +8,16 @@ import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedString
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedInt
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer
+import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns
 import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.MODID
 import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.id
+import org.teamvoided.dusks_pixel_signs.client.misc.SignOffsets
 
 class DusksPixelSignsConfig : Config(id(MODID)) {
+
+    fun isNamespaceBig(namespace: String): Boolean {
+        return namespaceListType.eval == namespaceList.contains(namespace)
+    }
 
     @RequiresAction(Action.RELOAD_RESOURCES)
     var namespaceListType = ListType.ALLOW_LIST
@@ -46,6 +52,12 @@ class DusksPixelSignsConfig : Config(id(MODID)) {
 
     @ConfigGroup.Pop
     var wallSign = ValidatedVec3(0.0078125, 0.234375 + 0.0625, 0.0626)
+
+    override fun onUpdateClient() {
+        super.onUpdateClient()
+        SignOffsets.TRANSFORMATIONS = SignOffsets.create()
+        DusksPixelSigns.BIG_CACHE.clear()
+    }
 
     @Suppress("unused")
     enum class ListType(val eval: Boolean) {

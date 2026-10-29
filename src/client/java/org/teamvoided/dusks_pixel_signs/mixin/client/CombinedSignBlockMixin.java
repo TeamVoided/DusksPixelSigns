@@ -16,12 +16,14 @@ import org.teamvoided.dusks_pixel_signs.client.misc.SignShapes;
 
 @Mixin({SignBlock.class, WallSignBlock.class})
 public abstract class CombinedSignBlockMixin extends BaseEntityBlock {
+
     protected CombinedSignBlockMixin(Properties properties) {
         super(properties);
     }
 
     @ModifyReturnValue(method = "getShape", at = @At("RETURN"))
     protected VoxelShape customSignShape(VoxelShape original, BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        return SignShapes.getSignShape(blockState, original) ;
+        return SignShapes.getSignShape(blockState, original);
     }
+
 }

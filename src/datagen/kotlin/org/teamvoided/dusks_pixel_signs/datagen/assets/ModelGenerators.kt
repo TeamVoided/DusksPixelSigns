@@ -11,7 +11,8 @@ import net.minecraft.client.data.models.model.ModelLocationUtils
 import net.minecraft.client.data.models.model.ModelTemplate
 import net.minecraft.client.data.models.model.TextureMapping
 import net.minecraft.client.data.models.model.TextureSlot
-import net.minecraft.client.renderer.block.model.VariantMutator
+import net.minecraft.client.renderer.block.dispatch.VariantMutator
+import net.minecraft.client.resources.model.sprite.Material
 import net.minecraft.resources.Identifier
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
@@ -46,8 +47,8 @@ object ModelGenerators {
 
     fun BlockModelGenerators.pixelAccurateSign(sign: Block, planks: Identifier, log: Identifier) {
         val texture: TextureMapping = TextureMapping()
-            .put(PLANKS, planks)
-            .put(WOOD, log)
+            .put(PLANKS, Material(planks))
+            .put(WOOD, Material(log))
         val default = SIGN_MODEL.create(blockId(sign, "_0"), texture, modelOutput)
         val rotate225 = SIGN_255_MODEL.create(blockId(sign, "_1"), texture, modelOutput)
         val rotate45 = SIGN_45_MODEL.create(blockId(sign, "_2"), texture, modelOutput)
@@ -72,8 +73,8 @@ object ModelGenerators {
 
     fun BlockModelGenerators.pixelAccurateTintedSign(sign: Block, planks: Identifier, log: Identifier) {
         val texture: TextureMapping = TextureMapping()
-            .put(PLANKS, planks)
-            .put(WOOD, log)
+            .put(PLANKS, Material(planks))
+            .put(WOOD, Material(log))
         val default = SIGN_MODEL_TINTED.create(blockId(sign, "_0"), texture, modelOutput)
         val rotate225 = SIGN_255_MODEL_TINTED.create(blockId(sign, "_1"), texture, modelOutput)
         val rotate45 = SIGN_45_MODEL_TINTED.create(blockId(sign, "_2"), texture, modelOutput)
@@ -85,7 +86,7 @@ object ModelGenerators {
         )
     }
 
-    var Y_ROT_0: VariantMutator = VariantMutator.Y_ROT.withValue(Quadrant.R0);
+    var Y_ROT_0: VariantMutator = VariantMutator.Y_ROT.withValue(Quadrant.R0)
 
     fun create16RotationStates(
         modelRotNon: Identifier, modelRot255: Identifier, modelRot45: Identifier, modelRot675: Identifier,
@@ -106,13 +107,13 @@ object ModelGenerators {
     }
 
     fun BlockModelGenerators.pixelAccurateWallSign(wallSign: Block, planks: Identifier) {
-        val texture = TextureMapping().put(PLANKS, planks)
+        val texture = TextureMapping().put(PLANKS, Material(planks))
         WALL_SIGN_MODEL.create(wallSign, texture, modelOutput)
         createNonTemplateHorizontalBlock(wallSign)
     }
 
     fun BlockModelGenerators.pixelAccurateTintedWallSign(wallSign: Block, planks: Identifier) {
-        val texture = TextureMapping().put(PLANKS, planks)
+        val texture = TextureMapping().put(PLANKS, Material(planks))
         WALL_SIGN_MODEL_TINTED.create(wallSign, texture, modelOutput)
         createNonTemplateHorizontalBlock(wallSign)
     }
