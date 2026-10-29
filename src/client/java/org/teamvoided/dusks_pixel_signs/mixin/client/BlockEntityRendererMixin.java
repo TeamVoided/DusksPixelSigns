@@ -10,9 +10,9 @@ import static org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.config;
 @Mixin(BlockEntityRenderer.class)
 public interface BlockEntityRendererMixin {
 
-    @SuppressWarnings("rawtypes")
     @ModifyReturnValue(method = "getViewDistance", at = @At("RETURN"))
     default int modifySignRenderDist(int original) {
+        //noinspection rawtypes
         return config.getSignRenderDist((BlockEntityRenderer)this, original);
     }
 

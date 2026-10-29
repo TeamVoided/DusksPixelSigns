@@ -26,6 +26,7 @@ class VanillaModelProvider(o: FabricPackOutput) : FabricModelProvider(o) {
         pixelAccurateSign(PALE_OAK_SIGN, PALE_OAK_WALL_SIGN, PALE_OAK_PLANKS, PALE_OAK_LOG)
         pixelAccurateSign(MANGROVE_SIGN, MANGROVE_WALL_SIGN, MANGROVE_PLANKS, MANGROVE_LOG)
         pixelAccurateSign(CHERRY_SIGN, CHERRY_WALL_SIGN, CHERRY_PLANKS, CHERRY_LOG)
+        pixelAccurateSign(POPLAR_SIGN, POPLAR_WALL_SIGN, POPLAR_PLANKS, POPLAR_LOG)
         pixelAccurateSign(BAMBOO_SIGN, BAMBOO_WALL_SIGN, block("bamboo_sign_planks"), block("bamboo_sign_log"))
         pixelAccurateSign(CRIMSON_SIGN, CRIMSON_WALL_SIGN, CRIMSON_PLANKS, CRIMSON_STEM)
         pixelAccurateSign(WARPED_SIGN, WARPED_WALL_SIGN, WARPED_PLANKS, WARPED_STEM)

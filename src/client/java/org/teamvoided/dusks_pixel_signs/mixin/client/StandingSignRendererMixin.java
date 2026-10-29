@@ -1,7 +1,5 @@
 package org.teamvoided.dusks_pixel_signs.mixin.client;
 
-import net.minecraft.client.renderer.blockentity.AbstractSignRenderer;
-import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.StandingSignRenderer;
 import net.minecraft.client.renderer.blockentity.state.StandingSignRenderState;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
@@ -17,11 +15,7 @@ import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns;
 import org.teamvoided.dusks_pixel_signs.client.misc.SignOffsets;
 
 @Mixin(StandingSignRenderer.class)
-public abstract class StandingSignRendererMixin extends AbstractSignRenderer<StandingSignRenderState> {
-
-    public StandingSignRendererMixin(BlockEntityRendererProvider.Context context) {
-        super(context);
-    }
+public abstract class StandingSignRendererMixin {
 
     @Inject(
             method = "extractRenderState(Lnet/minecraft/world/level/block/entity/SignBlockEntity;Lnet/minecraft/client/renderer/blockentity/state/StandingSignRenderState;FLnet/minecraft/world/phys/Vec3;Lnet/minecraft/client/renderer/feature/ModelFeatureRenderer$CrumblingOverlay;)V",

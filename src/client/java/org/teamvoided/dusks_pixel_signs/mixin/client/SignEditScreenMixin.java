@@ -2,12 +2,12 @@ package org.teamvoided.dusks_pixel_signs.mixin.client;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen;
 import net.minecraft.client.gui.screens.inventory.SignEditScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
+import net.minecraft.world.level.block.entity.SignTextSlot;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -17,7 +17,7 @@ import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns;
 import static org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.isBig;
 
 @Mixin(SignEditScreen.class)
-public abstract class SignEditScreenMixin extends AbstractSignEditScreen {
+public abstract class SignEditScreenMixin {
 
     @Shadow
     @Final
@@ -29,12 +29,8 @@ public abstract class SignEditScreenMixin extends AbstractSignEditScreen {
     @Unique
     private boolean dusksPixelSigns$bigSign = false;
 
-    public SignEditScreenMixin(SignBlockEntity sign, boolean fromFront, boolean shouldFilterText) {
-        super(sign, fromFront, shouldFilterText);
-    }
-
     @Inject(method = "<init>", at = @At("RETURN"))
-    void setupRenderData(SignBlockEntity sign, boolean isFrontText, boolean shouldFilter, CallbackInfo ci) {
+    void setupRenderData(SignBlockEntity sign, SignTextSlot slot, boolean shouldFilter, CallbackInfo ci) {
         dusksPixelSigns$bigSign = isBig(sign.getBlockState());
         if (dusksPixelSigns$bigSign) {
             displayedHeight = (sign.getBlockState().getBlock() instanceof WallSignBlock) ? 8 : 16;

@@ -4,7 +4,6 @@ package org.teamvoided.dusks_pixel_signs.mixin.client;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.SignBlock;
 import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -15,15 +14,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.teamvoided.dusks_pixel_signs.client.misc.SignShapes;
 
 @Mixin({SignBlock.class, WallSignBlock.class})
-public abstract class CombinedSignBlockMixin extends BaseEntityBlock {
-
-    protected CombinedSignBlockMixin(Properties properties) {
-        super(properties);
-    }
+public abstract class CombinedSignBlockMixin {
 
     @ModifyReturnValue(method = "getShape", at = @At("RETURN"))
-    protected VoxelShape customSignShape(VoxelShape original, BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-        return SignShapes.getSignShape(blockState, original);
+    protected VoxelShape customSignShape(VoxelShape original, BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return SignShapes.getSignShape(state, original);
     }
 
 }
