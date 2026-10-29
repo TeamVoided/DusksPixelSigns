@@ -16,8 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns;
 import org.teamvoided.dusks_pixel_signs.client.misc.SignOffsets;
 
-import static org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.IS_BIG_KEY;
-
 @Mixin(StandingSignRenderer.class)
 public abstract class StandingSignRendererMixin extends AbstractSignRenderer<StandingSignRenderState> {
 
@@ -30,9 +28,7 @@ public abstract class StandingSignRendererMixin extends AbstractSignRenderer<Sta
             at = @At("RETURN")
     )
     void setIsBigData(SignBlockEntity blockEntity, StandingSignRenderState state, float partialTicks, Vec3 cameraPosition, ModelFeatureRenderer.CrumblingOverlay breakProgress, CallbackInfo ci) {
-        boolean big = DusksPixelSigns.isBig(blockEntity.getBlockState());
-        if (big) {
-            state.setData(IS_BIG_KEY, true);
+        if (DusksPixelSigns.isBig(blockEntity.getBlockState())) {
             var block = blockEntity.getBlockState();
             state.transformations = block.getBlock() instanceof WallSignBlock
                     ? SignOffsets.TRANSFORMATIONS.wallTransformation(block.getValue(WallSignBlock.FACING))

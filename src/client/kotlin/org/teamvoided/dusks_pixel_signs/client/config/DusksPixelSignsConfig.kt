@@ -1,13 +1,12 @@
 package org.teamvoided.dusks_pixel_signs.client.config
 
-import me.fzzyhmstrs.fzzy_config.annotations.Action
-import me.fzzyhmstrs.fzzy_config.annotations.RequiresAction
 import me.fzzyhmstrs.fzzy_config.config.Config
 import me.fzzyhmstrs.fzzy_config.config.ConfigGroup
 import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedString
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedInt
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer
+import net.minecraft.client.renderer.blockentity.StandingSignRenderer
 import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns
 import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.MODID
 import org.teamvoided.dusks_pixel_signs.client.DusksPixelSigns.id
@@ -19,10 +18,7 @@ class DusksPixelSignsConfig : Config(id(MODID)) {
         return namespaceListType.eval == namespaceList.contains(namespace)
     }
 
-    @RequiresAction(Action.RELOAD_RESOURCES)
     var namespaceListType = ListType.ALLOW_LIST
-
-    @RequiresAction(Action.RELOAD_RESOURCES)
     var namespaceList = ValidatedString().toList(
         "minecraft",
 //        "dusks_and_dungeons",
@@ -32,11 +28,10 @@ class DusksPixelSignsConfig : Config(id(MODID)) {
     var signRenderDistance = ValidatedInt(64, Int.MAX_VALUE, 1)
     var hangingSignRenderDistance = ValidatedInt(64, Int.MAX_VALUE, 1)
 
-    fun getSignRenderDist(renderer: BlockEntityRenderer<*, *>): Int {
-        return if (renderer is HangingSignRenderer)
-            hangingSignRenderDistance.get()
-        else
-            signRenderDistance.get()
+    fun getSignRenderDist(renderer: BlockEntityRenderer<*, *>, original: Int): Int = when (renderer) {
+        is HangingSignRenderer -> hangingSignRenderDistance.get()
+        is StandingSignRenderer -> signRenderDistance.get()
+        else -> original
     }
 
     @Suppress("unused")

@@ -23,9 +23,6 @@ object SignOffsets {
 
     fun createTransformations(angle: Float, isWallSign: Boolean): SignTransformations {
         return SignTransformations(
-            Transformation(
-                baseTransformation(angle, isWallSign).scale(0.6666667f, -0.6666667f, -0.6666667f)
-            ),
             textTransformation(angle, true, isWallSign),
             textTransformation(angle, false, isWallSign)
         )

@@ -60,6 +60,7 @@ object ModelGenerators {
         )
     }
 
+    @Suppress("unused")
     fun BlockModelGenerators.pixelAccurateTintedSign(sign: Block, wallSign: Block, planks: Block, log: Block) {
         pixelAccurateTintedSign(sign, wallSign, blockId(planks), blockId(log))
     }

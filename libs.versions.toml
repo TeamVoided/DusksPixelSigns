@@ -4,15 +4,15 @@
     fabric_loom = "1.19-SNAPSHOT"
     iridium = "4.0.0"
     # Dependencies
-    minecraft = "26.1.2"
+    minecraft = "26.2"
     fabric_loader = "0.20.1"
-    fabric_api = "0.155.3+26.1.2"
+    fabric_api = "0.161.0+26.2"
     fabric_kotlin = "1.13.8+kotlin.2.3.0"
-    fzzy_config = "0.7.7+26.1"
+    fzzy_config = "0.7.7+26.2"
     tomlkt = "0.3.7"
     # Compatibility
     dusks_and_dungeons = "1.0.0-beta.9"
-    enderscape = "rwSOFSbW"
+    enderscape = "g1hBr7BS"
     # Runtime
     modmenu = "17.0.1"
 #    emi = "1.1.22+1.21.1"

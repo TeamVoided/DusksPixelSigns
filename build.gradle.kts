@@ -49,9 +49,9 @@ dependencies {
     // Compatibility
 //    implementation(libs.dusks.and.dungeons)
     implementation(libs.enderscape)
-    implementation("maven.modrinth:trim-patcher:2.1-mc26.1-fabric")
-    implementation("dev.isxander:yet-another-config-lib:3.9.5+26.1-fabric")
-    implementation("maven.modrinth:lithostitched:1.7.13-fabric-26.1")
+    implementation("maven.modrinth:trim-patcher:1.0-mc26.2")
+    implementation("dev.isxander:yet-another-config-lib:3.9.5+26.2-fabric")
+    implementation("maven.modrinth:lithostitched:1.7.13-fabric-26.2")
     // Runtime
     implementation(libs.modmenu)
     // Testing
